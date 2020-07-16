@@ -1,0 +1,60 @@
+{
+  "name": "digital_security_system",
+  "version": "1.0.0",
+  "main": "index.tsx",
+  "repository": "https://github.com/ilham18D/digital_security_system.git",
+  "author": "<ilham18mm@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.10.2",
+    "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.38",
+    "@types/react-dom": "^16.9.0",
+    "firebase": "^7.14.2",
+    "google-protobuf": "^3.12.2",
+    "grpc-web": "^1.1.0",
+    "material-table": "^1.57.2",
+    "moment": "^2.25.3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.4.1",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "deploy": "yarn install && yarn build && firebase deploy --only hosting:inbox-super",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "ignorePatterns": [
+      "**/*_pb.js"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/google-protobuf": "^3.7.2",
+    "@types/react-router-dom": "^5.1.5"
+  }
+}
