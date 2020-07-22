@@ -1,0 +1,66 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package polisi;
+
+service PolisiService {
+    rpc Find (google.protobuf.Empty) returns (ResPolisiArray);
+    rpc FindByEmail (ReqFindByEmail) returns (ResPolisiArray);
+    rpc FindMyProfil(google.protobuf.Empty) returns (ResPolisi);
+    rpc Add (ReqAdd) returns (ResPolisi);
+    rpc UpdateProfil(ReqUpdateProfil) returns (ResPolisi);
+    rpc UpdateAkun(ReqUpdateAkun) returns (ResPolisi);
+    rpc Delete (ReqId) returns (ResPolisi);
+}
+
+enum JenisKelamin{
+    LAKI_LAKI= 0;
+    PEREMPUAN= 1;
+}
+
+message ResPolisi{
+    string id = 1;
+    string ktp = 2;
+    string nama = 3;
+    string nomorHp = 4;
+    string email = 5;
+    string alamat = 6;
+    JenisKelamin jenisKelamin = 7;
+    string tanggalLahir = 8;
+    string createdAt = 9;
+    string updatedAt = 10;
+
+}
+
+message ResPolisiArray {
+    repeated ResPolisi items = 1;
+  }
+
+message ReqAdd{
+    string ktp = 1;
+    string nama = 2;
+    string nomorHp = 3;
+    string email = 4;
+    string alamat = 5;
+    JenisKelamin jenisKelamin = 6;
+    string tanggalLahir = 7;
+}
+
+
+message ReqId {
+    string id = 1;
+}
+message ReqFindByEmail{
+    string email = 1;
+}
+message ReqUpdateProfil {
+    string ktp = 1;
+    string nama = 2;
+    string nomorHp = 3;
+    string alamat = 4;
+    JenisKelamin jenisKelamin = 5;
+    string tanggalLahir = 6;
+}
+
+message ReqUpdateAkun {
+    string email = 1;
+}

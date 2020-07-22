@@ -1,0 +1,22 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+package berita;
+
+service BeritaService {
+  rpc Find(google.protobuf.Empty) returns (ResBeritaArray);
+
+}
+
+message ResBerita {
+  string id = 1;
+  string author = 2;
+  string title = 3;
+  string description = 4;
+  string url = 5;
+  string urlToImage = 6;
+  string content = 7;
+  string publishedAt = 8;
+}
+message ResBeritaArray {
+  repeated ResBerita items = 1;
+}

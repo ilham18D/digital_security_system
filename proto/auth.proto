@@ -1,0 +1,43 @@
+syntax = "proto3";
+import "google/protobuf/any.proto";
+import "google/protobuf/empty.proto";
+package userAuth;
+
+service UserAuthService {
+    rpc Login(ReqSubscribe) returns (google.protobuf.Empty);
+    rpc Logout(ReqSubscribe) returns (google.protobuf.Empty);
+}
+message ReqSubscribe {
+    string fcmToken = 1;
+}
+enum UserRoles {
+    ADMIN=0;
+    POLISI=1;
+    MASYARAKAT=2;
+}
+message ReqVerifikasiToken {
+    repeated int32 roles = 1;
+}
+message FirebaseProperty {
+    map<string, google.protobuf.Any> identities = 1;
+    string signInProvider = 2;
+    string signInSecondFactor = 3;
+    string secondFactorIdentifier = 4; 
+    string tenant = 5;
+}
+message ResVerifikasiToken {
+    string aud = 1;
+    int32 authTime = 2; 
+    string email = 3;
+    bool emailVerified = 4;
+    int32 exp = 5;
+    FirebaseProperty firebase= 6;
+    int32 iat = 7;
+    string iss = 8;
+    string phoneNumber = 9;
+    string picture = 10;
+    string sub = 11;
+    string uid = 13;
+    UserRoles roles = 14;
+    string parent = 15;
+}

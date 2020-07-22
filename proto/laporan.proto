@@ -1,0 +1,61 @@
+syntax = "proto3";
+package laporan;
+
+service LaporanService {
+  rpc AddLaporan(ReqAddLaporan) returns (ResLaporan);
+  rpc TerimaLaporan(ReqId) returns (ResLaporan);
+  rpc Find(ReqFind) returns (ResLaporanPaging);
+  rpc Delete(ReqId) returns (ResLaporan);
+
+}
+
+message ResLaporan {
+  string id = 1;
+  bool diterima = 2;
+  string createdBy = 3;
+  string nama = 4;
+  string alamat = 5;
+  string nomorHp = 6;
+  double lon = 7;
+  double lat = 8;
+  bool darurat = 9;
+  string deskripsi = 10;
+  string imageUrl = 11;
+  string fcmPelapor = 12;
+  string WaktuKejadian = 13;
+  string createdAt = 14;
+  string updatedAt = 15;
+}
+
+message ReqFind {
+  bool darurat = 1;
+  int32 page = 2;
+  int32 limit = 3;
+}
+message MetaPaging {
+  int32 totalItems = 1;
+  int32 itemCount = 2;
+  int32 itemsPerPage = 3;
+  int32 totalPages = 4;
+  int32 currentPage = 5;
+}
+message ResLaporanPaging {
+  MetaPaging meta = 1;
+  repeated ResLaporan items = 2;
+}
+message ReqAddLaporan {
+  string nama = 1;
+  string alamat = 2;
+  string nomorHp = 3;
+  double lon = 4;
+  double lat = 5;
+  bool darurat = 6;
+  string deskripsi = 7;
+  string imageUrl = 8;
+  string fcmPelapor = 9;
+  string WaktuKejadian = 10;
+}
+
+message ReqId {
+  string id = 1;
+}
