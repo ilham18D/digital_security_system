@@ -10,6 +10,8 @@ import { Apps } from "@material-ui/icons";
 
 import DashboardPage from "./dashboard";
 import PagePolisi from "./polisi";
+import PageLaporan from "./laporan";
+import LaporanDarurat from "./laporanDarurat";
 
 import { MenuListItemLink, MenuListItemButton } from "../components";
 import { Divider } from "@material-ui/core";
@@ -83,7 +85,15 @@ export default function HomePage() {
           </List>
 
           <List>
-            <MenuListItemLink icon={<Apps />} to="/polisi" text="polisi" />
+            <MenuListItemLink icon={<Apps />} to="/polisi" text="Polisi" />
+          </List>
+          <List>
+            <MenuListItemLink
+              icon={<Apps />}
+              to="/laporanDarurat"
+              text="Laporan Darurat"
+            />
+            <MenuListItemLink icon={<Apps />} to="/laporan" text="Laporan" />
           </List>
           <Divider />
           <List>
@@ -105,6 +115,12 @@ export default function HomePage() {
           </Route>
           <Route exact path="/polisi">
             <PagePolisi />
+          </Route>
+          <Route exact path="/laporanDarurat">
+            <LaporanDarurat />
+          </Route>
+          <Route exact path="/laporan">
+            <PageLaporan />
           </Route>
         </Switch>
       </main>

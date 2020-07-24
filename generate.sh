@@ -1,7 +1,7 @@
 #!/bin/sh
 
 SRC_DIR=./proto
-PROTO_NAME='auth.proto polisi.proto'
+PROTO_NAME='auth.proto polisi.proto laporan.proto'
 GEN_DIR=./src/gen
 if [ -d "$GEN_DIR" ]; then rm -Rf $GEN_DIR; fi
 mkdir $GEN_DIR
