@@ -11,6 +11,9 @@ import {
 import { LaporanServiceClient } from "../gen/LaporanServiceClientPb";
 import { CheckCircleOutline } from "@material-ui/icons";
 
+import moment from "moment";
+import "moment/locale/id";
+
 export default function LaporanDarurat() {
   const [data, setData] = React.useState<ResLaporanPaging>(
     new ResLaporanPaging()
@@ -55,6 +58,13 @@ export default function LaporanDarurat() {
           {
             title: "Waktu Kejadian",
             field: "waktukejadian",
+            render: (rowData) => {
+              return (
+                <label>
+                  {moment(new Date(rowData.waktukejadian)).format("LLL")}
+                </label>
+              );
+            },
           },
 
           {

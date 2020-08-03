@@ -5,11 +5,11 @@ import {
   ResPolisi,
   ResPolisiArray,
   JenisKelamin,
+  ReqId,
 } from "../gen/polisi_pb";
 import { PolisiServiceClient } from "../gen/PolisiServiceClientPb";
 import { Metadata } from "grpc-web";
 import { Empty } from "google-protobuf/google/protobuf/empty_pb";
-import AssignmentLateIcon from "@material-ui/icons/AssignmentLate";
 import { getToken } from "../api";
 
 export default function MaterialTableDemo() {
@@ -27,7 +27,6 @@ export default function MaterialTableDemo() {
     const authorization = await getToken();
     const reqMetadata: Metadata = { authorization };
     const result = await api.find(reqEmpty, reqMetadata);
-    console.log(authorization);
     setData(result);
   };
   const addData = async (addData: ResPolisi.AsObject) => {
@@ -47,13 +46,28 @@ export default function MaterialTableDemo() {
       setData(
         new ResPolisiArray().setItemsList([...data.getItemsList(), result])
       );
-      console.log("add data");
     } catch (error) {
       console.log(error);
       return;
     }
   };
-  console.log(data.toObject().itemsList);
+
+  const deleteUser = async (userDelete: ResPolisi.AsObject) => {
+    try {
+      const authorization = await getToken();
+      const reqMetadata: Metadata = { authorization };
+      const reqId = new ReqId().setId(userDelete.id);
+      await api.delete(reqId, reqMetadata);
+      setData(
+        new ResPolisiArray().setItemsList(
+          data.getItemsList().filter((it) => it.getId() !== userDelete.id)
+        )
+      );
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
 
   return (
     <MaterialTable
@@ -97,17 +111,9 @@ export default function MaterialTableDemo() {
         },
       ]}
       data={data.toObject().itemsList}
-      actions={[
-        {
-          icon: () => <AssignmentLateIcon />,
-          tooltip: "Data admin Kota",
-          onClick: (event, rowData) => {
-            console.log(rowData);
-          },
-        },
-      ]}
       editable={{
         onRowAdd: async (newData) => addData(newData),
+        onRowDelete: (oldData) => deleteUser(oldData),
       }}
     />
   );

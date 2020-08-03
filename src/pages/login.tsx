@@ -118,17 +118,26 @@ export default function LoginPage() {
         {state.loading && <LinearProgress />}
 
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
+          <img
+            style={{
+              display: "block",
+              marginLeft: "auto",
+              marginRight: "auto",
+              marginTop: "20px",
+            }}
+            width={"80%"}
+            height={"90%"}
+            src={"/LOGOPOLSEKMALLAWA.png"}
+            alt={"img"}
+          />
+
           <Typography component="h1" variant="h5">
-            Admin Panel
+            Pusat Komando
           </Typography>
-          <Typography component="h1" variant="h5">
-            Polsek Mallawa
-          </Typography>
+
           <form className={classes.form} noValidate onSubmit={loginClick}>
             <TextField
+              color="primary"
               variant="outlined"
               margin="normal"
               required
@@ -146,12 +155,13 @@ export default function LoginPage() {
               label="Password"
               type="password"
               id="password"
+              color="primary"
             />
             <Button
               type="submit"
               fullWidth
               variant="contained"
-              color="default"
+              color="primary"
               className={classes.submit}
             >
               Masuk

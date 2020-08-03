@@ -7,6 +7,8 @@ import { LaporanServiceClient } from "../gen/LaporanServiceClientPb";
 import { ReqId } from "../gen/polisi_pb";
 import { CheckCircleOutline } from "@material-ui/icons";
 import ImageComponent from "../components/image";
+import moment from "moment";
+import "moment/locale/id";
 
 export default function Laporan() {
   const [data, setData] = React.useState<ResLaporanPaging>(
@@ -51,9 +53,17 @@ export default function Laporan() {
             title: "deskripsi",
             field: "deskripsi",
           },
+
           {
             title: "Waktu Kejadian",
             field: "waktukejadian",
+            render: (rowData) => {
+              return (
+                <label>
+                  {moment(new Date(rowData.waktukejadian)).format("LLL")}
+                </label>
+              );
+            },
           },
           {
             title: "Status laporan",

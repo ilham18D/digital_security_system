@@ -85,7 +85,7 @@ export default function HomePage() {
           </List>
 
           <List>
-            <MenuListItemLink icon={<Apps />} to="/polisi" text="Polisi" />
+            <MenuListItemLink icon={<Apps />} to="/polisi" text="User Polisi" />
           </List>
           <List>
             <MenuListItemLink
