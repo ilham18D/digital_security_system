@@ -36,7 +36,7 @@ export default function LaporanDarurat() {
     const result = await api.find(reqFind, reqMetadata);
     setData(result);
   };
-  console.log(data.toObject().itemsList);
+
   return (
     <React.Fragment>
       <MaterialTable

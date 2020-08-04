@@ -101,7 +101,6 @@ export default function HomePage() {
               text="Keluar"
               onClick={async () => {
                 await logout();
-                console.log("test keluar");
               }}
             />
           </List>

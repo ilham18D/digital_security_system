@@ -28,10 +28,9 @@ export default function Laporan() {
 
     const reqMetadata: Metadata = { authorization };
     const result = await api.find(reqFind, reqMetadata);
-    console.log(result.getItemsList().length);
     setData(result);
   };
-  console.log(data.toObject().itemsList);
+
   return (
     <React.Fragment>
       <MaterialTable

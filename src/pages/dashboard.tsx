@@ -13,9 +13,62 @@ export default function DashboardPage() {
         <Card>
           <CardActionArea>
             <CardContent>
-              <ShoppingBasket />
-              <Typography gutterBottom variant="h5" component="h2">
-                Login Berhasil
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h3"
+                style={{ textAlign: "center" }}
+              >
+                SELAMAT DATANG DI SITUS ADMIN KEPOLISIAN SEKTOR MALLAWA KAB.
+                MAROS
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Grid>
+      <Grid item xs={6}>
+        <Card>
+          <CardActionArea>
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h3"
+                style={{ textAlign: "center" }}
+              >
+                Laporan
+              </Typography>
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="h6"
+                style={{ textAlign: "center" }}
+              >
+                3 Laporan
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Grid>
+      <Grid item xs={6}>
+        <Card>
+          <CardActionArea>
+            <CardContent>
+              <Typography
+                gutterBottom
+                variant="h5"
+                component="h3"
+                style={{ textAlign: "center" }}
+              >
+                Laporan Darurat
+              </Typography>
+              <Typography
+                gutterBottom
+                variant="h6"
+                component="h6"
+                style={{ textAlign: "center" }}
+              >
+                3 Laporan
               </Typography>
             </CardContent>
           </CardActionArea>
