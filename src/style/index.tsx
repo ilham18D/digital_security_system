@@ -31,6 +31,17 @@ export const useStyleDashboard = makeStyles((theme: Theme) =>
     root: {
       display: "flex",
     },
+    reactdatepickerwrapper: {
+      display: "inline-flex",
+      width: "30%",
+      height: "1.1876em",
+      padding: "20px",
+      borderRadius: "4px;",
+      color: "currentColor",
+      borderStyle: "dashed",
+
+      borderBlockStart: "drawer",
+    },
     appBar: {
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(["width", "margin"], {

@@ -24,28 +24,25 @@ export default function Laporan() {
 
   const getData = async () => {
     const authorization = await getToken();
-    const reqFind = new ReqFind().setPage(1).setLimit(10).setDarurat(false);
+    const reqFind = new ReqFind().setPage(1).setLimit(50).setDarurat(false);
 
     const reqMetadata: Metadata = { authorization };
     const result = await api.find(reqFind, reqMetadata);
     setData(result);
   };
+  console.log(data.toObject().meta);
 
   return (
     <React.Fragment>
       <MaterialTable
-        title="Laporan"
+        title="Layanan Pengaduan Masyarakat"
         columns={[
           {
-            title: "nama",
+            title: "Nama Pelapor",
             field: "nama",
           },
           {
-            title: "alamat",
-            field: "alamat",
-          },
-          {
-            title: "nomorHp",
+            title: "Nomor Telpon/Hp",
             field: "nomorhp",
           },
           {

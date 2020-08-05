@@ -40,18 +40,14 @@ export default function LaporanDarurat() {
   return (
     <React.Fragment>
       <MaterialTable
-        title="Laporan ( Darurat )"
+        title="Layanan Pengaduan ( Laporan Darurat )"
         columns={[
           {
-            title: "nama",
+            title: "Nama Pelapor",
             field: "nama",
           },
           {
-            title: "alamat",
-            field: "alamat",
-          },
-          {
-            title: "nomorHp",
+            title: "Nomor Telpon/Hp",
             field: "nomorhp",
           },
 

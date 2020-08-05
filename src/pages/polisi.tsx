@@ -11,6 +11,11 @@ import { PolisiServiceClient } from "../gen/PolisiServiceClientPb";
 import { Metadata } from "grpc-web";
 import { Empty } from "google-protobuf/google/protobuf/empty_pb";
 import { getToken } from "../api";
+// import moment from "moment";
+import "moment/locale/id";
+// import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import FormAddUser from "./formAdduser";
 
 export default function MaterialTableDemo() {
   const [data, setData] = React.useState<ResPolisiArray>(new ResPolisiArray());
@@ -29,18 +34,26 @@ export default function MaterialTableDemo() {
     const result = await api.find(reqEmpty, reqMetadata);
     setData(result);
   };
-  const addData = async (addData: ResPolisi.AsObject) => {
+  const addData = async (
+    ktp: string,
+    nama: string,
+    nomorhp: string,
+    email: string,
+    alamat: string,
+    jeniskelamin: number,
+    tanggallahir: string
+  ) => {
     try {
       const authorization = await getToken();
 
       const reqData = new ReqAdd()
-        .setKtp(addData.ktp)
-        .setNama(addData.nama)
-        .setNomorhp(addData.nomorhp)
-        .setEmail(addData.email)
-        .setAlamat(addData.alamat)
-        .setJeniskelamin(addData.jeniskelamin)
-        .setTanggallahir(addData.tanggallahir);
+        .setKtp(ktp)
+        .setNama(nama)
+        .setNomorhp(nomorhp)
+        .setEmail(email)
+        .setAlamat(alamat)
+        .setJeniskelamin(jeniskelamin)
+        .setTanggallahir(tanggallahir);
       const reqMetadata: Metadata = { authorization };
       const result = await api.add(reqData, reqMetadata);
       setData(
@@ -69,52 +82,97 @@ export default function MaterialTableDemo() {
     }
   };
 
+  const [openDialogAdd, setOpenDialogAdd] = React.useState(false);
   return (
-    <MaterialTable
-      title="Editable Example"
-      columns={[
-        {
-          title: "ktp",
-          field: "ktp",
-        },
-        {
-          title: "nama",
-          field: "nama",
-        },
-        {
-          title: "nomorHp",
-          field: "nomorhp",
-        },
-        {
-          title: "email",
-          field: "email",
-        },
-        {
-          title: "alamat",
-          field: "alamat",
-        },
-        {
-          title: "tanggallahir",
-          field: "tanggallahir",
-        },
-        {
-          title: "jenis Kelamin",
-          field: "jeniskelamin",
-          lookup: { 0: "Laki-Laki", 1: "Perempuan" },
-          render: (rowData) => {
-            if (rowData.jeniskelamin === JenisKelamin.LAKI_LAKI) {
-              return <label>Laki-Laki</label>;
-            } else {
-              return <label>Perempuan</label>;
-            }
+    <React.Fragment>
+      <FormAddUser
+        open={openDialogAdd}
+        setOpen={setOpenDialogAdd}
+        save={async (
+          nama,
+          ktp,
+          nomorhp,
+          email,
+          alamat,
+          jeniskelamin,
+          tanggallahir
+        ) => {
+          try {
+            addData(
+              nama,
+              ktp,
+              nomorhp,
+              email,
+              alamat,
+              Number(jeniskelamin),
+              tanggallahir
+            );
+          } catch (error) {
+            console.log(error);
+          }
+        }}
+      />
+      <MaterialTable
+        title="Editable Example"
+        columns={[
+          {
+            title: "KTP",
+            field: "ktp",
           },
-        },
-      ]}
-      data={data.toObject().itemsList}
-      editable={{
-        onRowAdd: async (newData) => addData(newData),
-        onRowDelete: (oldData) => deleteUser(oldData),
-      }}
-    />
+          {
+            title: "Nama",
+            field: "nama",
+          },
+          {
+            title: "Nomor Telpon/HP",
+            field: "nomorhp",
+          },
+          {
+            title: "Email",
+            field: "email",
+          },
+          {
+            title: "Alamat",
+            field: "alamat",
+          },
+          {
+            title: "Tanggal Lahir",
+            field: "tanggallahir",
+            type: "date",
+
+            render: (rowData) => {
+              return <label>{rowData.tanggallahir}</label>;
+            },
+          },
+          {
+            title: "Jenis Kelamin",
+            field: "jeniskelamin",
+            lookup: { 0: "Laki-Laki", 1: "Perempuan" },
+            render: (rowData) => {
+              if (rowData.jeniskelamin === JenisKelamin.LAKI_LAKI) {
+                return <label>Laki-Laki</label>;
+              } else {
+                return <label>Perempuan</label>;
+              }
+            },
+          },
+        ]}
+        data={data.toObject().itemsList}
+        actions={[
+          {
+            icon: "add",
+            tooltip: "Tambah Admin",
+            isFreeAction: true,
+            onClick: (event) => {
+              setOpenDialogAdd(true);
+            },
+          },
+        ]}
+        editable={{
+          // onRowAdd: async (newData) => addData(newData),
+          onRowDelete: (oldData) => deleteUser(oldData),
+        }}
+      />
+    </React.Fragment>
   );
 }

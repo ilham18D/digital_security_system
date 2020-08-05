@@ -45,8 +45,9 @@ export function useLoginApi() {
 
   const logout = async () => {
     try {
+      const fcmToken = await firebaseApp.messaging().getToken();
       const authorization = await getToken();
-      await api.logout(new ReqSubscribe().setFcmtoken(""), {
+      await api.logout(new ReqSubscribe().setFcmtoken(fcmToken), {
         authorization,
       } as Metadata);
       await firebaseApp.auth().signOut();

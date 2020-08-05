@@ -1,19 +1,19 @@
 import React from "react";
-
 import Drawer from "@material-ui/core/Drawer";
-
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import { Switch, Route } from "react-router-dom";
 import { useStyleDashboard } from "../style";
 import { Apps } from "@material-ui/icons";
-
 import DashboardPage from "./dashboard";
 import PagePolisi from "./polisi";
 import PageLaporan from "./laporan";
 import LaporanDarurat from "./laporanDarurat";
-
-import { MenuListItemLink, MenuListItemButton } from "../components";
+import {
+  MenuListItemLink,
+  MenuListItemButton,
+  MenuSubListItem,
+} from "../components";
 import { Divider } from "@material-ui/core";
 import { useLoginApi } from "../api/useLogin";
 import { FirebaseApp } from "../api";
@@ -87,14 +87,18 @@ export default function HomePage() {
           <List>
             <MenuListItemLink icon={<Apps />} to="/polisi" text="User Polisi" />
           </List>
-          <List>
+
+          <Divider />
+
+          <MenuSubListItem text="Layanan Masyarakat">
             <MenuListItemLink
               icon={<Apps />}
               to="/laporanDarurat"
               text="Laporan Darurat"
             />
-            <MenuListItemLink icon={<Apps />} to="/laporan" text="Laporan" />
-          </List>
+            <MenuListItemLink icon={<Apps />} to="/laporan" text="Pengaduan" />
+          </MenuSubListItem>
+
           <Divider />
           <List>
             <MenuListItemButton
