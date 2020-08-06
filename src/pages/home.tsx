@@ -5,7 +5,6 @@ import List from "@material-ui/core/List";
 import { Switch, Route } from "react-router-dom";
 import { useStyleDashboard } from "../style";
 import { Apps } from "@material-ui/icons";
-import DashboardPage from "./dashboard";
 import PagePolisi from "./polisi";
 import PageLaporan from "./laporan";
 import LaporanDarurat from "./laporanDarurat";
@@ -80,17 +79,14 @@ export default function HomePage() {
           </label>
         </div>
         <div className={classes.drawerContainer}>
+          <Divider />
           <List>
-            <MenuListItemLink icon={<Apps />} to="/" text="Dashboard" />
+            <MenuListItemLink icon={<Apps />} to="/" text="Admin SIPD" />
           </List>
-
-          <List>
-            <MenuListItemLink icon={<Apps />} to="/polisi" text="User Polisi" />
-          </List>
-
           <Divider />
 
           <MenuSubListItem text="Layanan Masyarakat">
+            <Divider />
             <MenuListItemLink
               icon={<Apps />}
               to="/laporanDarurat"
@@ -114,11 +110,9 @@ export default function HomePage() {
         <Toolbar />
         <Switch>
           <Route exact path="/">
-            <DashboardPage />
-          </Route>
-          <Route exact path="/polisi">
             <PagePolisi />
           </Route>
+
           <Route exact path="/laporanDarurat">
             <LaporanDarurat />
           </Route>

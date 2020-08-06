@@ -113,7 +113,7 @@ export default function MaterialTableDemo() {
         }}
       />
       <MaterialTable
-        title="Editable Example"
+        title="Admin SIPD "
         columns={[
           {
             title: "KTP",
