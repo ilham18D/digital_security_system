@@ -96,20 +96,24 @@ export default function FormAddUser({
               label="KTP"
               variant="outlined"
               margin="dense"
+              required
               fullWidth
             />
             <TextField
               id="nama"
+              required
               label="Nama User"
               variant="outlined"
               margin="dense"
               fullWidth
             />
             <TextField
+              required
               id="nomorhp"
               label="Nomor Telpon/HP"
               variant="outlined"
               margin="dense"
+              type="Number"
               fullWidth
             />
             <TextField
@@ -117,6 +121,8 @@ export default function FormAddUser({
               label="Email"
               variant="outlined"
               margin="dense"
+              type="Email"
+              required
               fullWidth
             />
             <TextField
@@ -124,6 +130,7 @@ export default function FormAddUser({
               label="Alamat"
               variant="outlined"
               margin="dense"
+              required
               fullWidth
             />
             <TextField
@@ -136,6 +143,7 @@ export default function FormAddUser({
               SelectProps={{
                 native: true,
               }}
+              required
               margin="dense"
               fullWidth
             >

@@ -30,7 +30,7 @@ export default function Laporan() {
     const result = await api.find(reqFind, reqMetadata);
     setData(result);
   };
-  console.log(data.toObject().meta);
+  // console.log(data.toObject().meta);
 
   return (
     <React.Fragment>

@@ -32,6 +32,7 @@ export default function MaterialTableDemo() {
     const authorization = await getToken();
     const reqMetadata: Metadata = { authorization };
     const result = await api.find(reqEmpty, reqMetadata);
+    console.log(authorization);
     setData(result);
   };
   const addData = async (
@@ -56,9 +57,12 @@ export default function MaterialTableDemo() {
         .setTanggallahir(tanggallahir);
       const reqMetadata: Metadata = { authorization };
       const result = await api.add(reqData, reqMetadata);
-      setData(
-        new ResPolisiArray().setItemsList([...data.getItemsList(), result])
-      );
+      if (result) {
+        setData(
+          new ResPolisiArray().setItemsList([...data.getItemsList(), result])
+        );
+        alert("User Berhasil Ditambahkan");
+      }
     } catch (error) {
       console.log(error);
       return;
@@ -71,6 +75,7 @@ export default function MaterialTableDemo() {
       const reqMetadata: Metadata = { authorization };
       const reqId = new ReqId().setId(userDelete.id);
       await api.delete(reqId, reqMetadata);
+      alert("User Berhasil dihapus");
       setData(
         new ResPolisiArray().setItemsList(
           data.getItemsList().filter((it) => it.getId() !== userDelete.id)
@@ -97,19 +102,24 @@ export default function MaterialTableDemo() {
           jeniskelamin,
           tanggallahir
         ) => {
-          try {
-            addData(
-              nama,
-              ktp,
-              nomorhp,
-              email,
-              alamat,
-              Number(jeniskelamin),
-              tanggallahir
-            );
-          } catch (error) {
-            console.log(error);
-          }
+          addData(
+            nama,
+            ktp,
+            nomorhp,
+            email,
+            alamat,
+            Number(jeniskelamin),
+            tanggallahir
+          );
+          // console.log(
+          //   nama,
+          //   ktp,
+          //   nomorhp,
+          //   email,
+          //   alamat,
+          //   Number(jeniskelamin),
+          //   tanggallahir
+          // );
         }}
       />
       <MaterialTable
